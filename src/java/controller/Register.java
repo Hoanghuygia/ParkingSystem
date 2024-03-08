@@ -18,44 +18,35 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author LAPTOP
  */
-public class Login extends HttpServlet {
+public class Register extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         
-        
+        try{
             String username = req.getParameter("username");
             String password = req.getParameter("password");
             
             AccountsDAO account = new AccountsDAO();
-            
-            if(account.checkAccount(username, password)){
-                UserDTO user = new UserDTO(username, password);
-//                resp.sendRedirect("login");
-                resp.setContentType("text/heml");
-                PrintWriter printWriter = resp.getWriter();
-                printWriter.println("Verify success11");
-                printWriter.println("username:  " + username);
-                printWriter.println("password:  " + password);
+            if(!account.checkUsernameExist(username)){
+                UserDTO addUser = new UserDTO(username, password);
+                session.setAttribute("addUser", addUser);
+//                resp.sendRedirect(register_information);
+            }else{
+                session.setAttribute("ExistedUser", "This username is already in use");
+                resp.sendRedirect("login");
             }
-            else{
-                resp.setContentType("text/heml");
-                PrintWriter printWriter = resp.getWriter();
-                printWriter.println("Verify not success11");
-
-                printWriter.println("username:  " + username);
-                printWriter.println("password:  " + password);
-            }
-//            UserDTO user = new UserDTO(username, password);
-//            resp.sendRedirect("login");
-            
-
-        
+        } catch(IOException e){
+            System.out.println(e);
+        }
     }
+    
+
+
 }

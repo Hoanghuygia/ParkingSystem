@@ -30,4 +30,21 @@ public class AccountsDAO {
         }
         return false;
     }
+    public boolean checkUsernameExist(String username){
+        String query = "SELECT * FROM Accounts WHERE username= ?";
+        try{
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, username);
+            
+            rs = stm.executeQuery();
+            
+            if(rs.next()){
+                return true;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return false;
+    }
 }

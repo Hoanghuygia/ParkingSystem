@@ -15,6 +15,11 @@
             <input type="password" name="password" require > 
             
             <button class="btn">Login</button>
+            
+            <br>
         </form>
+        
+        <p>Don't have an account?</p>
+        <a href="register">Register here</a>
     </body>
 </html>
