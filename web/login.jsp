@@ -12,7 +12,7 @@
             <input type="text" name="username" require > 
             
             <label for="password">Password</label>
-            <input type="password" name="passsord" require > 
+            <input type="password" name="password" require > 
             
             <button class="btn">Login</button>
         </form>

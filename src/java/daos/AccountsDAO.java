@@ -11,7 +11,7 @@ public class AccountsDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
-    public UserDTO checkAccount(String username, String password){
+    public boolean checkAccount(String username, String password){ //return true if the account exist in the database
         String query = "SELECT * FROM Accounts WHERE username= ? AND password= ?";
         try{
             conn = DBConnector.getConnection();
@@ -20,10 +20,14 @@ public class AccountsDAO {
             stm.setString(2, password);
             
             rs = stm.executeQuery();
+            
+            if(rs.next()){
+                return true;
+            }
 
         } catch(SQLException e){
             System.out.println(e);
         }
-        return null;
+        return false;
     }
 }
