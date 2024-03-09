@@ -5,7 +5,9 @@
 package controller;
 
 import daos.AccountsDAO;
+import daos.UserInforDAO;
 import dtos.UserDTO;
+import dtos.UserInforDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -36,9 +38,16 @@ public class RegisterInfor extends HttpServlet {
         String phoneNumber = req.getParameter("phoneNumber");
         
         UserDTO user = (UserDTO) session.getAttribute("addUser");
+        UserInforDTO userInfro = new UserInforDTO(user.getUsername(), firstName, lastName, creditCard, phoneNumber);
+        
         try{
             AccountsDAO account = new AccountsDAO();
             account.writeAccountToDatabase(user);
+            
+            UserInforDAO userInforDAO = new UserInforDAO();
+            userInforDAO.writeUserInforToDatabase(userInfro);
+            
+            
         }catch(Exception e){
             System.out.println(e);
         } finally{
