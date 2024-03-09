@@ -12,6 +12,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>controller.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterInfor</servlet-name>
+        <servlet-class>controller.RegisterInfor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterInfor</servlet-name>
+        <url-pattern>/registerInfor</url-pattern>
     </servlet-mapping>
 </web-app>

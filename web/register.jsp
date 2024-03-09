@@ -9,11 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Register</title>
     </head>
     <body>
         <h1>Sign up</h1>
         <p>It's quick and easy</p>
+        
+        <% String error = (String) session.getAttribute("ExistedUser");
+        if (error != null && !error.isEmpty()){
+            session.removeAttribute("ExistedUser");
+        %>
+        <p style="color: red;"> <%= error %> </p>
+        <%
+            }
+        %>
         
         <form action="register" method="post">
             <label for="username">Username: </label> 
@@ -24,5 +33,8 @@
             
             <button>Next</button>
         </form>
+        
+        <p>Already have account?</p>
+        <a href="login">Login here</a>
     </body>
 </html>

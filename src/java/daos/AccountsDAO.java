@@ -1,5 +1,6 @@
 package daos;
 
+import dtos.UserDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,22 @@ public class AccountsDAO {
     private Connection conn = null;
     private PreparedStatement stm = null;
     private ResultSet rs = null;
+    
+    public void writeAccountToDatabase(UserDTO user){
+        String query = "INSERT INTO Accounts (username, password) VALUES (?, ?)";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, user.getUsername());
+            stm.setString(2, user.getPassword());
+            
+            stm.executeUpdate();
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
     
     public boolean checkAccount(String username, String password){ //return true if the account exist in the database
         String query = "SELECT * FROM Accounts WHERE username= ? AND password= ?";

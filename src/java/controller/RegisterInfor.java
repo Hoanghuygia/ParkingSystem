@@ -18,33 +18,34 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author LAPTOP
  */
-public class Register extends HttpServlet {
+public class RegisterInfor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("register.jsp").forward(req, resp);
+        req.getRequestDispatcher("registerInfor.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         
+        //GET INFORMATION FROM FROM
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String creditCard = req.getParameter("creditCard");
+        String phoneNumber = req.getParameter("phoneNumber");
+        
+        UserDTO user = (UserDTO) session.getAttribute("addUser");
         try{
-            String username = req.getParameter("username");
-            String password = req.getParameter("password");
-            
             AccountsDAO account = new AccountsDAO();
-            if(!account.checkUsernameExist(username)){
-                UserDTO addUser = new UserDTO(username, password);
-                session.setAttribute("addUser", addUser);
-                resp.sendRedirect("registerInfor");
-            }else{
-                session.setAttribute("ExistedUser", "This username is already in use");
-                resp.sendRedirect("register");
-            }
-        } catch(IOException e){
+            account.writeAccountToDatabase(user);
+        }catch(Exception e){
             System.out.println(e);
+        } finally{
+            resp.sendRedirect("login");
         }
+        
+
     }
     
 
