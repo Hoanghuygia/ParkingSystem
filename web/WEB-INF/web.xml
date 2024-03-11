@@ -23,6 +23,10 @@
         <servlet-name>Home</servlet-name>
         <servlet-class>controller.Home</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controller.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -42,5 +46,9 @@
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
 </web-app>

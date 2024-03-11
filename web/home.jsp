@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Hello ${sessionScope.User.username}</h1>
-        <form action="home" method="post">
-            <button>Log out</button>
+        <form action="Logout" method="post">
+            <button type="submit">Logout</button>
         </form>
         
     </body>
