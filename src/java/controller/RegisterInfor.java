@@ -39,8 +39,9 @@ public class RegisterInfor extends HttpServlet {
         
         UserDTO user = (UserDTO) session.getAttribute("addUser");
         session.removeAttribute("addUser");
-        session.setAttribute("User", user);
+        
         UserInforDTO userInfro = new UserInforDTO(user.getUsername(), firstName, lastName, creditCard, phoneNumber);
+        session.setAttribute("User", userInfro);
         
         try{
             AccountsDAO account = new AccountsDAO();

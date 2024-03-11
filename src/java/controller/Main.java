@@ -5,6 +5,7 @@
 package controller;
 
 import dtos.UserDTO;
+import dtos.UserInforDTO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class Main extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
 //        UserDTO user = (UserDTO) session.getAttribute("User");
-        UserDTO user = (UserDTO) session.getAttribute("User");
+        UserInforDTO user = (UserInforDTO) session.getAttribute("User");
         if(user != null){
             resp.sendRedirect("home");
         }

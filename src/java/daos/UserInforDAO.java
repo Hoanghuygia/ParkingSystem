@@ -21,7 +21,7 @@ public class UserInforDAO {
     private ResultSet rs = null;
     
     public void writeUserInforToDatabase(UserInforDTO userInfor){
-        String query = "INSERT INTO Users (username, first_name, last_name, credit_number, phone_number) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Users (username, first_name, last_name, credit_number, phone_number, coin, vehicle_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try{
             conn = DBConnector.getConnection();
@@ -32,6 +32,8 @@ public class UserInforDAO {
             stm.setString(3, userInfor.getLastName());
             stm.setString(4, userInfor.getCreditNumber());
             stm.setString(5, userInfor.getPhoneNumber());
+            stm.setInt(6, 0);
+            stm.setInt(7, 0);
             
             stm.executeUpdate();
         }catch(SQLException e){

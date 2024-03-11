@@ -23,6 +23,8 @@ public class UserInforDTO {
         this.lastName = lastName;
         this.creditNumber = creditNumber;
         this.phoneNumber = phoneNumber;
+        this.coin = 0;
+        this.vehicleNumber = 0;
     }
 
     public String getUsername() {
