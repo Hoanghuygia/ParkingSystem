@@ -38,24 +38,17 @@ public class Login extends HttpServlet {
             if(account.checkAccount(username, password)){
                 UserDTO user = new UserDTO(username, password);
 //                resp.sendRedirect("login");
-                resp.setContentType("text/heml");
-                PrintWriter printWriter = resp.getWriter();
-                printWriter.println("Verify success11");
-                printWriter.println("username:  " + username);
-                printWriter.println("password:  " + password);
+//                resp.setContentType("text/heml");
+//                PrintWriter printWriter = resp.getWriter();
+//                printWriter.println("Verify success11");
+//                printWriter.println("username:  " + username);
+//                printWriter.println("password:  " + password);
+                session.setAttribute("User", user);
+                resp.sendRedirect("Main");
             }
             else{
-                resp.setContentType("text/heml");
-                PrintWriter printWriter = resp.getWriter();
-                printWriter.println("Verify not success11");
-
-                printWriter.println("username:  " + username);
-                printWriter.println("password:  " + password);
-            }
-//            UserDTO user = new UserDTO(username, password);
-//            resp.sendRedirect("login");
-            
-
-        
+                session.setAttribute("InvalidUser", "Invalid username or password");
+                resp.sendRedirect("login");
+            }    
     }
 }
