@@ -5,7 +5,9 @@
 package controller;
 
 import daos.AccountsDAO;
+import daos.UserInforDAO;
 import dtos.UserDTO;
+import dtos.UserInforDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -36,13 +38,16 @@ public class Login extends HttpServlet {
             AccountsDAO account = new AccountsDAO();
             
             if(account.checkAccount(username, password)){
-                UserDTO user = new UserDTO(username, password);
+//                UserDTO user = new UserDTO(username, password);
+                UserInforDAO userInforDAO = new UserInforDAO();
+                UserInforDTO user = userInforDAO.getUserInforFromUsername(username);
 //                resp.sendRedirect("login");
 //                resp.setContentType("text/heml");
 //                PrintWriter printWriter = resp.getWriter();
 //                printWriter.println("Verify success11");
 //                printWriter.println("username:  " + username);
 //                printWriter.println("password:  " + password);
+
                 session.setAttribute("User", user);
                 resp.sendRedirect("Main");
             }
