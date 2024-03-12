@@ -21,5 +21,14 @@
             <button type="submit">Logout</button>
         </form>
         
+        <form action="history" method="get">
+            <button type="submit" >History</button>
+        </form>
+        
+        <form action="profile" method="get">
+            <button type="submit" >Profile</button>
+        </form>
+        
+        
     </body>
 </html>
