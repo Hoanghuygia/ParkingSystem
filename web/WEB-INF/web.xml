@@ -31,6 +31,10 @@
         <servlet-name>History</servlet-name>
         <servlet-class>controller.History</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeFirstName</servlet-name>
+        <servlet-class>controller.ChangeInformation.ChangeFirstName</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -58,5 +62,9 @@
     <servlet-mapping>
         <servlet-name>History</servlet-name>
         <url-pattern>/history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeFirstName</servlet-name>
+        <url-pattern>/ChangeFirstName</url-pattern>
     </servlet-mapping>
 </web-app>
