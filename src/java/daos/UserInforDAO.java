@@ -20,6 +20,79 @@ public class UserInforDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+//    public void changeUserInformation(String parameterValue, String username, String fieldName){
+//        String query = "UPDATE Users SET ? = ? WHERE username= ?";
+//        
+//        try{
+//            conn = DBConnector.getConnection();
+//            stm = conn.prepareStatement(query);
+//            System.out.println("Field name: " + fieldName);
+//            System.out.println("Parameter value: " + parameterValue);
+//            switch (fieldName){
+//                case "firstname":
+//                    stm.setString(1, "first_name");
+//                    break;
+//                case "lastname":
+//                    stm.setString(1,"last_name");
+//                    break;
+//                case "chargedcoin":
+//                    stm.setString(1,"coin");
+//                    break;
+//                case "creditcard":
+//                    stm.setString(1,"credit_number");
+//                    break;
+//                case "phonenumber":
+//                    stm.setString(1,"phone_number");
+//                    break;
+//                case "vehiclenumber":
+//                    stm.setString(1,"vehicle_number");
+//                    break;
+//            }
+//            
+//            stm.setString(2, parameterValue);
+//            stm.setString(3, username);
+//            
+//            stm.executeUpdate();
+//        }catch(SQLException e){
+//            System.out.println(e);
+//        }
+//    }
+    public void changeUserInformation(String parameterValue, String username, String fieldName){
+        String query = "UPDATE Users SET " + getColumnName(fieldName) + " = ? WHERE username = ?";
+    
+        try {
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+
+            stm.setString(1, parameterValue);
+            stm.setString(2, username);
+
+            stm.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+}
+
+// Helper method to get the corresponding column name for the given field name
+private String getColumnName(String fieldName) {
+    switch (fieldName) {
+        case "firstname":
+            return "first_name";
+        case "lastname":
+            return "last_name";
+        case "chargedcoin":
+            return "coin";
+        case "creditcard":
+            return "credit_number";
+        case "phonenumber":
+            return "phone_number";
+        case "vehiclenumber":
+            return "vehicle_number";
+        default:
+            throw new IllegalArgumentException("Invalid field name: " + fieldName);
+    }
+}
+
     public UserInforDTO getUserInforFromUsername(String username){
         String query = "SELECT * FROM Users WHERE username= ?";
         UserInforDTO userInfor = null;
