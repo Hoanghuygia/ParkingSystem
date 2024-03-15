@@ -47,6 +47,10 @@
         <servlet-name>Recommend</servlet-name>
         <servlet-class>controller.Recommend</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChooseNewSpot</servlet-name>
+        <servlet-class>controller.ChooseNewSpot</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -90,5 +94,9 @@
     <servlet-mapping>
         <servlet-name>Recommend</servlet-name>
         <url-pattern>/recommend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseNewSpot</servlet-name>
+        <url-pattern>/ChooseNewSpot</url-pattern>
     </servlet-mapping>
 </web-app>

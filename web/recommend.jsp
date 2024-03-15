@@ -13,6 +13,24 @@
     </head>
     <body>
         <h1>Our recommend here</h1>
-        <p>${sessionScope.ParkingSpot} still empty</p>
+        <p>${sessionScope.ParkingSpot} is empty</p>
+        <%
+        String parkingSpot = (String) session.getAttribute("ParkingSpot");
+
+        if (parkingSpot != null && parkingSpot.charAt(0) == 'R') {
+            session.setAttribute("Marker", "R");
+        }
+        else{
+            session.setAttribute("Marker", "G");
+        }
+%>
+        
+        <form action="Submit" method="post">
+            <button>Submit</button>
+        </form>
+        
+        <form action="ChooseNewSpot" method="post">
+            <button>Choose a new spot</button>
+        </form>
     </body>
 </html>
