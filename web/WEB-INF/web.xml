@@ -39,6 +39,14 @@
         <servlet-name>ChangeUserInformation</servlet-name>
         <servlet-class>controller.ChangeUserInformation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Scan</servlet-name>
+        <servlet-class>controller.Scan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Recommend</servlet-name>
+        <servlet-class>controller.Recommend</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -74,5 +82,13 @@
     <servlet-mapping>
         <servlet-name>ChangeUserInformation</servlet-name>
         <url-pattern>/ChangeUserInformation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Scan</servlet-name>
+        <url-pattern>/scan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Recommend</servlet-name>
+        <url-pattern>/recommend</url-pattern>
     </servlet-mapping>
 </web-app>

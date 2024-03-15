@@ -37,7 +37,7 @@
             <form action="ChangeUserInformation" method="post">
                 <p>Charge here</p>
                 <input type="text" name="chargedcoin" placeholder="Number coin charge" require > 
-                <button type="submit">Save</button>
+                <button type="submit">Charge</button>
             </form>
         </div>
             

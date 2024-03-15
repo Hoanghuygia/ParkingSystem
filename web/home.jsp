@@ -13,7 +13,6 @@
     </head>
     <body>
         <h1>Hello ${sessionScope.User.username}</h1>
-        <p>Huy dep trai khong yeu ai ca</p>
         <p>Coin: ${sessionScope.User.coin}</p>
         <p>Vehicle Number: ${sessionScope.User.vehicleNumber}</p>
         
@@ -27,6 +26,10 @@
         
         <form action="profile" method="get">
             <button type="submit" >Profile</button>
+        </form>
+        
+        <form action="scan" method="get">
+            <button>Scan</button>
         </form>
         
         
