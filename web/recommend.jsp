@@ -12,8 +12,7 @@
         <title>Recommend</title>
     </head>
     <body>
-        <<h1>Our recommend here</h1>
+        <h1>Our recommend here</h1>
         <p>${sessionScope.ParkingSpot} still empty</p>
-        
     </body>
 </html>

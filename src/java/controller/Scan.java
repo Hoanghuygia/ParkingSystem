@@ -7,13 +7,12 @@ package controller;
 import daos.ContractorDAO;
 import dtos.UserInforDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.Random;
+import utils.RandomChooseParkingSpot;
 
 /**
  *
@@ -37,24 +36,14 @@ public class Scan extends HttpServlet {
         String type = req.getParameter("typeMotorecycle");
         
         if(contractorDAO.checkTransportationContracted(user.getUsername(), code)){
-            session.setAttribute("ParkingSpot", Scan.chooseRandomParkingSpot("R"));
+            session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot("R"));
             resp.sendRedirect("recommend");
         }else{
-            session.setAttribute("ParkingSpot", Scan.chooseRandomParkingSpot("G"));
+            session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot("G"));
             resp.sendRedirect("recommend");
         }
     }
-    public static String chooseRandomParkingSpot(String marker){
-        return marker + Scan.generateRandomChar('A', 'O') + Scan.generateRandomNumber(51);
-    }
-    public static char generateRandomChar(char start, char end) {
-        Random random = new Random();
-        return (char) (start + random.nextInt(end - start + 1));
-    }
-    public static int generateRandomNumber(int end){
-        Random random = new Random();
-        return random.nextInt(end);
-    }
+    
     
 
 }
