@@ -6,6 +6,7 @@ package controller;
 
 import daos.ContractorDAO;
 import daos.ParkingDAO;
+import dtos.ParkingDTO;
 import dtos.UserInforDTO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -35,6 +36,11 @@ public class Scan extends HttpServlet {
         
         String code = req.getParameter("licensePlate");
         String type = req.getParameter("typeMotorecycle");
+        
+        ParkingDTO parkingSlot = new ParkingDTO(user.getUsername(), code);
+        parkingSlot.setTypeTransportation(type);
+        
+        session.setAttribute("ParkingSlot", parkingSlot);
         
         if(contractorDAO.checkTransportationContracted(user.getUsername(), code)){
 //            String parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("R");

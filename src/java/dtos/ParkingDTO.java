@@ -13,9 +13,14 @@ public class ParkingDTO {
     private String username ;
     private String code;
     private String spot;
-    private String start_time;
-    private String end_time;
-    private String type_transportation;
+    private String startTime;
+    private String endTime;
+    private String typeTransportation;
+    
+    public ParkingDTO(String username, String code){
+        this.username = username;
+        this.code = code;
+    }
 
     public String getUsername() {
         return username;
@@ -41,27 +46,28 @@ public class ParkingDTO {
         this.spot = spot;
     }
 
-    public String getStart_time() {
-        return start_time;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEnd_time() {
-        return end_time;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(String end_time) {
-        this.end_time = end_time;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public String getType_transportation() {
-        return type_transportation;
+    public String getTypeTransportation() {
+        return typeTransportation;
     }
 
-    public void setType_transportation(String type_transportation) {
-        this.type_transportation = type_transportation;
+    public void setTypeTransportation(String typeTransportation) {
+        this.typeTransportation = typeTransportation;
     }
+  
 }

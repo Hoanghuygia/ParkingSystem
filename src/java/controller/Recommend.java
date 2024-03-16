@@ -4,6 +4,8 @@
  */
 package controller;
 
+import daos.ParkingDAO;
+import dtos.ParkingDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -25,7 +27,16 @@ public class Recommend extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //in this method, we need to visualize like the recommend as well as save information to the database
+        HttpSession session = req.getSession(true);
         
+        ParkingDTO parkingSlot = (ParkingDTO)session.getAttribute("ParkingSlot");
+        String spot = (String)session.getAttribute("ParkingSpot");
+        parkingSlot.setSpot(spot);
+        
+        ParkingDAO parkingDAO = new ParkingDAO();
+        parkingDAO.saveParkingSpotToDatabase(parkingSlot);
+        System.out.println("tram lakakaka");
     }
     
     

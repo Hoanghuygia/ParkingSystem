@@ -25,7 +25,7 @@
         }
 %>
         
-        <form action="Submit" method="post">
+        <form action="recommend" method="post">
             <button>Submit</button>
         </form>
         

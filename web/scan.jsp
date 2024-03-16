@@ -15,13 +15,16 @@
         <h1>Scan here</h1>
         <form action="scan" method="post">
             <label for="licencePlate">License Plate</label>
-            <input type="text" name="licensePlate" required><br>
+            <input type="text" name="licensePlate" required>
+            <br>
             
             <input type="radio" name="typeMotorecycle" value="motorcycle" required>
             <label for="typeMotorecycle">Motorcycle</label><br>
             <input type="radio" name="typeMotorecycle"value="motor">
             <label for="typeMotorecycle">Motor</label><br>
             <input type="radio" name="typeMotorecycle" value="other">
+            <br>
+            
             <label for="typeMotorecycle">Other</label>
             
             <button type="submit">Submit</button>

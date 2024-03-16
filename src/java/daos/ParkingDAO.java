@@ -4,6 +4,7 @@
  */
 package daos;
 
+import dtos.ParkingDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,21 +20,40 @@ public class ParkingDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
-    public boolean checkSpotExist(String parkingSpot){
-        String query = "SELECT * FROM Parking WHERE spot= ?";
+    public void saveParkingSpotToDatabase(ParkingDTO parkingSpot){
+        String query = "INSERT INTO Parking(username, code, spot, start_time, type_transportation) VALUES (?, ?, ?, NOW(), ?)";
         
-        try{
+        try {
             conn = DBConnector.getConnection();
-        
-        stm = conn.prepareStatement(query);
-        stm.setString(1, parkingSpot);
-        
-        rs = stm.executeQuery();
-        
-        if(rs.next()){
-            return true;
+
+            stm = conn.prepareStatement(query);
+            
+            stm.setString(1, parkingSpot.getUsername());
+            stm.setString(2, parkingSpot.getCode());
+            stm.setString(3, parkingSpot.getSpot());
+            stm.setString(4, parkingSpot.getTypeTransportation());
+            
+            stm.executeUpdate();
+      
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-        } catch(SQLException e){
+    }
+    public boolean checkSpotExist(String parkingSpot) {
+        String query = "SELECT * FROM Parking WHERE spot= ?";
+
+        try {
+            conn = DBConnector.getConnection();
+
+            stm = conn.prepareStatement(query);
+            stm.setString(1, parkingSpot);
+
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return false;
