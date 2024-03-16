@@ -4,6 +4,7 @@
  */
 package controller;
 
+import daos.ParkingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -23,8 +24,20 @@ public class ChooseNewSpot extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         
-        session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot((String)session.getAttribute("Marker")));
+        setParkingSpot((String)session.getAttribute("Marker"), session);
+//        session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot((String)session.getAttribute("Marker")));
         resp.sendRedirect("recommend");
+    }
+    
+    public void setParkingSpot(String marker, HttpSession session) {
+        String parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("G");
+        ParkingDAO parkingDAO = new ParkingDAO();
+
+        while (parkingDAO.checkSpotExist(parkingSpot)) {
+            parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("G");
+            System.out.println("huy dep trai");
+        }
+        session.setAttribute("ParkingSpot", parkingSpot);
     }
 
 

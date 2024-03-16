@@ -5,6 +5,7 @@
 package controller;
 
 import daos.ContractorDAO;
+import daos.ParkingDAO;
 import dtos.UserInforDTO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -36,14 +37,37 @@ public class Scan extends HttpServlet {
         String type = req.getParameter("typeMotorecycle");
         
         if(contractorDAO.checkTransportationContracted(user.getUsername(), code)){
-            session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot("R"));
+//            String parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("R");
+//            ParkingDAO parkingDAO = new ParkingDAO();
+//            
+//            while (parkingDAO.checkSpotExist(parkingSpot)) {                
+//                parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("R");
+//                System.out.println("huy dep trai");
+//            }
+//            session.setAttribute("ParkingSpot", parkingSpot); 
+//            resp.sendRedirect("recommend");
+            setParkingSpot("R", session);
             resp.sendRedirect("recommend");
+
         }else{
-            session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot("G"));
+//            session.setAttribute("ParkingSpot", RandomChooseParkingSpot.chooseRandomParkingSpot("G"));
+//            resp.sendRedirect("recommend");
+
+            setParkingSpot("G", session);
             resp.sendRedirect("recommend");
         }
     }
     
+    public void setParkingSpot(String marker, HttpSession session) {
+        String parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("G");
+        ParkingDAO parkingDAO = new ParkingDAO();
+
+        while (parkingDAO.checkSpotExist(parkingSpot)) {
+            parkingSpot = RandomChooseParkingSpot.chooseRandomParkingSpot("G");
+            System.out.println("huy dep trai");
+        }
+        session.setAttribute("ParkingSpot", parkingSpot);
+    }
     
 
 }
