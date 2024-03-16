@@ -7,6 +7,16 @@
         <title>login</title>
     </head>
     <body>
+        <h1>Login</h1>
+        <% String error = (String) session.getAttribute("InvalidUser");
+        if (error != null && !error.isEmpty()){
+            session.removeAttribute("InvalidUser");
+        %>
+        <p style="color: red;"> <%= error %> </p>
+        <%
+            }
+        %>
+        
         <form action="login" method="post">
             <label for="username">User Name</label>
             <input type="text" name="username" require > 

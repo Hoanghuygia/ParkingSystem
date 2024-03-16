@@ -38,7 +38,10 @@ public class RegisterInfor extends HttpServlet {
         String phoneNumber = req.getParameter("phoneNumber");
         
         UserDTO user = (UserDTO) session.getAttribute("addUser");
+        session.removeAttribute("addUser");
+        
         UserInforDTO userInfro = new UserInforDTO(user.getUsername(), firstName, lastName, creditCard, phoneNumber);
+        session.setAttribute("User", userInfro);
         
         try{
             AccountsDAO account = new AccountsDAO();
@@ -51,7 +54,7 @@ public class RegisterInfor extends HttpServlet {
         }catch(Exception e){
             System.out.println(e);
         } finally{
-            resp.sendRedirect("login");
+            resp.sendRedirect("Main");
         }
         
 

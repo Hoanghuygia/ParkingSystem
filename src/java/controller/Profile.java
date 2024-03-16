@@ -4,35 +4,27 @@
  */
 package controller;
 
-import dtos.UserDTO;
-import dtos.UserInforDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 /**
  *
  * @author LAPTOP
  */
-public class Main extends HttpServlet {
+@WebServlet(name = "Profile", urlPatterns = {"/profile"})
+public class Profile extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
-//        UserDTO user = (UserDTO) session.getAttribute("User");
-        UserInforDTO user = (UserInforDTO) session.getAttribute("User");
-        if(user != null){
-            resp.sendRedirect("home");
-        }
-        else{
-            resp.sendRedirect("login");
-        }
-       
+        
+        req.getRequestDispatcher("profile.jsp").forward(req, resp);
     }
-
-
+    
 }

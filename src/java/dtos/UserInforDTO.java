@@ -23,6 +23,17 @@ public class UserInforDTO {
         this.lastName = lastName;
         this.creditNumber = creditNumber;
         this.phoneNumber = phoneNumber;
+        this.coin = 0;
+        this.vehicleNumber = 0;
+    }
+    public UserInforDTO(String username, String firstName, String lastName, String creditNumber, String phoneNumber, int coin, int vehicle_number){
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.creditNumber = creditNumber;
+        this.phoneNumber = phoneNumber;
+        this.coin = coin;
+        this.vehicleNumber = vehicle_number;
     }
 
     public String getUsername() {
