@@ -23,7 +23,7 @@
         else{
             session.setAttribute("Marker", "G");
         }
-%>
+        %>
         
         <form action="recommend" method="post">
             <button>Submit</button>
@@ -32,5 +32,23 @@
         <form action="ChooseNewSpot" method="post">
             <button>Choose a new spot</button>
         </form>
+        
+        <div>
+            <% 
+            String message = (String) session.getAttribute("ParikingSuccess");
+            if (message != null && !message.isEmpty()){
+                session.removeAttribute("ParikingSuccess");
+            %>
+            <p style="color: #3096d5;"> <%= message %> </p>
+            
+            <form action="BackToHome" method="post">
+                <p>Back to Home</p>
+                <button>Yes</button>
+            </form>
+            <%
+                }
+            %>  
+        </div>
+        
     </body>
 </html>

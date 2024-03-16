@@ -7,7 +7,6 @@ package controller;
 import daos.ParkingDAO;
 import dtos.ParkingDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +35,11 @@ public class Recommend extends HttpServlet {
         
         ParkingDAO parkingDAO = new ParkingDAO();
         parkingDAO.saveParkingSpotToDatabase(parkingSlot);
-        System.out.println("tram lakakaka");
+        
+        session.setAttribute("ParikingSuccess", "Parking Successfully");
+        
+        resp.sendRedirect("recommend");
+        
     }
     
     

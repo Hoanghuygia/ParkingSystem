@@ -23,9 +23,8 @@
             <input type="radio" name="typeMotorecycle"value="motor">
             <label for="typeMotorecycle">Motor</label><br>
             <input type="radio" name="typeMotorecycle" value="other">
-            <br>
-            
             <label for="typeMotorecycle">Other</label>
+            <br>
             
             <button type="submit">Submit</button>
         </form>
