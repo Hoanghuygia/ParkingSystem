@@ -35,12 +35,11 @@ public class ChangeUserInformation extends HttpServlet {
         updateUserField(req, user, userInforDAO, "chargedcoin");
         updateUserField(req, user, userInforDAO, "creditcard");
         updateUserField(req, user, userInforDAO, "phonenumber");
-        updateUserField(req, user, userInforDAO, "vehiclenumber");
+//        updateUserField(req, user, userInforDAO, "vehiclenumber");
     }
     
     public void updateUserField(HttpServletRequest req, UserInforDTO user, UserInforDAO userInforDAO, String fieldName) {
         String parameterValue = req.getParameter(fieldName);
-        System.out.println("huy dep trai");
         if (parameterValue != null) {
             userInforDAO.changeUserInformation(parameterValue, user.getUsername(), fieldName);
         }

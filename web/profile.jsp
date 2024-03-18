@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Profile</h1>
-   
+
         <div>
             <p>First Name: ${sessionScope.User.firstName}</p>
             <form action="ChangeUserInformation" method="post">
@@ -22,7 +22,7 @@
                 <button type="submit">Save</button>
             </form>
         </div>
-            
+
         <div>
             <p>Last Name: ${sessionScope.User.lastName}</p>
             <form action="ChangeUserInformation" method="post">
@@ -31,7 +31,7 @@
                 <button type="submit">Save</button>
             </form>
         </div>
-        
+
         <div>
             <p>Coin ${sessionScope.User.coin}</p>
             <form action="ChangeUserInformation" method="post">
@@ -40,7 +40,7 @@
                 <button type="submit">Charge</button>
             </form>
         </div>
-            
+
         <div>
             <p>Credit Number: ${sessionScope.User.creditNumber}</p>
             <form action="ChangeUserInformation" method="post">
@@ -49,7 +49,7 @@
                 <button type="submit">Save</button>
             </form>
         </div>
-        
+
         <div>
             <p>First Name: ${sessionScope.User.phoneNumber}</p>
             <form action="ChangeUserInformation" method="post">
@@ -58,14 +58,41 @@
                 <button type="submit">Save</button>
             </form>
         </div>
-            
+
         <div>
             <p>First Name: ${sessionScope.User.vehicleNumber}</p>
-            <form action="ChangeUserInformation" method="post">
+            <form action="ActiveAddVehecleModal" method="post">
                 <p>Add/Remove your transportation</p>
-                <input type="text" name="vehiclenumber" placeholder="Vehicle Number" require > 
-                <button type="submit">Save</button>
+                <button>Add</button>
             </form>
+             
+            <% 
+            String activeAddVehicleModal = (String) session.getAttribute("ActiveAddVehicleModal");
+            
+            if(activeAddVehicleModal != null){
+                if(activeAddVehicleModal.equals("1")){
+            %>
+            <div>
+            <form action="AddVehileToDatabase" method="post">
+                <label for="username">User Name</label>
+                <input type="text" name="username" require > 
+
+                <label for="code">Liscece Plate</label>
+                <input type="text" name="code" require > 
+                    
+                <label for="code">Type Transportation</label>
+                <input type="text" name="type_transportation" require > 
+                    
+                <button type="submit">Submit</button>
+            </form>
+            </div>
+            <%
+                }
+            }
+
+            %>
+            
+                            
         </div>
     </body>
 </html>

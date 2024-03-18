@@ -55,6 +55,10 @@
         <servlet-name>BackToHome</servlet-name>
         <servlet-class>controller.BackToHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActiveAddVehecleModal</servlet-name>
+        <servlet-class>controller.ActiveAddVehecleModal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -106,5 +110,9 @@
     <servlet-mapping>
         <servlet-name>BackToHome</servlet-name>
         <url-pattern>/BackToHome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActiveAddVehecleModal</servlet-name>
+        <url-pattern>/ActiveAddVehecleModal</url-pattern>
     </servlet-mapping>
 </web-app>
