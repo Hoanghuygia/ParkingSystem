@@ -69,30 +69,30 @@
             <% 
             String activeAddVehicleModal = (String) session.getAttribute("ActiveAddVehicleModal");
             
+            
             if(activeAddVehicleModal != null){
+                session.removeAttribute("ActiveAddVehicleModal");
                 if(activeAddVehicleModal.equals("1")){
             %>
             <div>
-            <form action="AddVehileToDatabase" method="post">
-                <label for="username">User Name</label>
-                <input type="text" name="username" require > 
+                <form action="AddVehileToDatabase" method="post">
+                    <label for="code">Licence Plate</label>
+                    <input type="text" name="code" require > <br>
 
-                <label for="code">Liscece Plate</label>
-                <input type="text" name="code" require > 
-                    
-                <label for="code">Type Transportation</label>
-                <input type="text" name="type_transportation" require > 
-                    
-                <button type="submit">Submit</button>
-            </form>
+                    <label for="code">Type Transportation</label> <br>
+                    <input type="radio" name="typeTransportation" value="motorcycle" required>
+                    <label for="typeTransportation">Motorcycle</label><br>
+                    <input type="radio" name="typeTransportation"value="car">
+                    <label for="typeTransportation">Car</label><br>
+
+                    <button type="submit">Submit</button>
+                </form>
             </div>
             <%
                 }
             }
 
-            %>
-            
-                            
+            %>               
         </div>
     </body>
 </html>

@@ -13,6 +13,12 @@ public class ContractorDTO {
     private String typeTransportation;
     private String code;
     private String date;
+    
+    public ContractorDTO(String username, String code, String typeTransportation){
+        this.username = username;
+        this.code = code;
+        this.typeTransportation = typeTransportation;
+    }
 
     public String getUsername() {
         return username;

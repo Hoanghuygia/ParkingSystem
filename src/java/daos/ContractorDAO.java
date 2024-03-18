@@ -4,6 +4,7 @@
  */
 package daos;
 
+import dtos.ContractorDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,21 @@ public class ContractorDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public void writeContractToDatabase(ContractorDTO contract){
+        String query = "INSERT INTO ContractTransportation (username, code, transportation_type, day_contract) VALUES (?, ?, ?, NOW())";
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, contract.getUsername());
+            stm.setString(2, contract.getCode());
+            stm.setString(3, contract.getTypeTransportation());
+            
+            stm.executeUpdate();
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
     public boolean checkTransportationContracted(String username, String code){
         String query = "SELECT * FROM ContractTransportation WHERE username= ? and code= ?";
         try{

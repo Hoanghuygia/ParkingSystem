@@ -59,6 +59,10 @@
         <servlet-name>ActiveAddVehecleModal</servlet-name>
         <servlet-class>controller.ActiveAddVehecleModal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddVehileToDatabase</servlet-name>
+        <servlet-class>controller.AddVehileToDatabase</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -114,5 +118,9 @@
     <servlet-mapping>
         <servlet-name>ActiveAddVehecleModal</servlet-name>
         <url-pattern>/ActiveAddVehecleModal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddVehileToDatabase</servlet-name>
+        <url-pattern>/AddVehileToDatabase</url-pattern>
     </servlet-mapping>
 </web-app>
