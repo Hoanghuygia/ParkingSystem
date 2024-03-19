@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import utils.DBConnector;
 
 /**
@@ -20,6 +21,37 @@ public class ContractorDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public ArrayList<ContractorDTO> getContractFromDatabase(String username){
+        
+        ArrayList<ContractorDTO> contracts = new ArrayList<>();
+        
+        String query = "SELECT * FROM ContractTransportation WHERE username= ?";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, username); // so funny
+            
+            rs = stm.executeQuery();
+            
+            while(rs.next()){
+                String code = rs.getString("code");
+                String transportationType = rs.getString("transportation_type");
+                String dayContract = rs.getString("day_contract");// I wonder something here
+                
+                ContractorDTO contract = new ContractorDTO(username, code, transportationType);
+                contract.setDate(dayContract);
+                
+                contracts.add(contract);
+            }
+    
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return contracts;
+    }
+        
     public void writeContractToDatabase(ContractorDTO contract){
         String query = "INSERT INTO ContractTransportation (username, code, transportation_type, day_contract) VALUES (?, ?, ?, NOW())";
         try{
