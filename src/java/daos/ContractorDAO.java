@@ -21,6 +21,21 @@ public class ContractorDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public void removeContractFromDatabase(String code){
+        String query = "DELETE FROM ContractTransportation WHERE code= ? ";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+            
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
     public ArrayList<ContractorDTO> getContractFromDatabase(String username){
         
         ArrayList<ContractorDTO> contracts = new ArrayList<>();

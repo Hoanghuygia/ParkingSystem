@@ -68,6 +68,7 @@
                     <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;">Code</th>
                     <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;">Type</th>
                     <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;">Date Contract</th>
+                    <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;"></th>
                 </tr>
                 <c:forEach var="contract" items="${requestScope.Contracts}">
                 
@@ -75,6 +76,12 @@
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getCode()}</td>
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getTypeTransportation()}</td>
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getDate()}</td>
+                        
+                        <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">
+                            <form action="RemoveTransportation" method="post">
+                                <button type="submit" name="removeButton" value="${contract.getCode()}">Remove</button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
@@ -83,8 +90,8 @@
 
         <div>
             <p>Vehicle Number: ${sessionScope.User.vehicleNumber}</p>
+            <p>Add your transportation here -></p>
             <form action="ActiveAddVehecleModal" method="post">
-                <p>Add/Remove your transportation</p>
                 <button>Add</button>
             </form>
 

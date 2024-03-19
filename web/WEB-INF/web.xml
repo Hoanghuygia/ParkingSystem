@@ -63,6 +63,10 @@
         <servlet-name>AddVehileToDatabase</servlet-name>
         <servlet-class>controller.AddVehileToDatabase</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveTransportation</servlet-name>
+        <servlet-class>controller.RemoveTransportation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -122,5 +126,9 @@
     <servlet-mapping>
         <servlet-name>AddVehileToDatabase</servlet-name>
         <url-pattern>/AddVehileToDatabase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveTransportation</servlet-name>
+        <url-pattern>/RemoveTransportation</url-pattern>
     </servlet-mapping>
 </web-app>
