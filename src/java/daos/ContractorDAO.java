@@ -21,6 +21,24 @@ public class ContractorDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public boolean checkCodeExisted(String code){
+        String query = "SELECT * FROM ContractTransportation WHERE code= ?";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            rs = stm.executeQuery();
+            while(rs.next()){
+                return true;
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return false;
+    }
     public void removeContractFromDatabase(String code){
         String query = "DELETE FROM ContractTransportation WHERE code= ? ";
         

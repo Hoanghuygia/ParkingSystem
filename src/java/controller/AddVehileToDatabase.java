@@ -33,7 +33,15 @@ public class AddVehileToDatabase extends HttpServlet {
         ContractorDTO contract = new ContractorDTO(username, code, typeTransportation);
         
         ContractorDAO contractorDAO = new ContractorDAO();
-        contractorDAO.writeContractToDatabase(contract);
+        if (!contractorDAO.checkCodeExisted(contract.getCode())) {
+
+            contractorDAO.writeContractToDatabase(contract);
+            session.removeAttribute("ActiveAddVehicleModal");
+        }
+        else{
+            session.setAttribute("InvalidCode", "Liscence plate had existed" );
+            
+        }
         
         resp.sendRedirect("profile");
         

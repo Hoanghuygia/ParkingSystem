@@ -71,12 +71,12 @@
                     <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;"></th>
                 </tr>
                 <c:forEach var="contract" items="${requestScope.Contracts}">
-                
+
                     <tr style="background-color: #ffffff;"> <!-- Alternate row background color -->
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getCode()}</td>
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getTypeTransportation()}</td>
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${contract.getDate()}</td>
-                        
+
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">
                             <form action="RemoveTransportation" method="post">
                                 <button type="submit" name="removeButton" value="${contract.getCode()}">Remove</button>
@@ -97,26 +97,41 @@
 
             <% 
             String activeAddVehicleModal = (String) session.getAttribute("ActiveAddVehicleModal");
-            
+            String invalidCode = (String) session.getAttribute("InvalidCode");
+            String success = (String) session.getAttribute("Success");
             
             if(activeAddVehicleModal != null){
-                session.removeAttribute("ActiveAddVehicleModal");
+//                if(success.equals("AddSuccessfully") ){
+//                    session.removeAttribute("ActiveAddVehicleModal");
+//                    
+//                }
                 if(activeAddVehicleModal.equals("1")){
             %>
-            <div>
-                <form action="AddVehileToDatabase" method="post">
-                    <label for="code">Licence Plate</label>
-                    <input type="text" name="code" require > <br>
+                    <div>
+                        <form action="AddVehileToDatabase" method="post">
+                            <label for="code">Licence Plate</label>
+                            <input type="text" name="code" require > <br>
 
-                    <label for="code">Type Transportation</label> <br>
-                    <input type="radio" name="typeTransportation" value="motorcycle" required>
-                    <label for="typeTransportation">Motorcycle</label><br>
-                    <input type="radio" name="typeTransportation"value="car">
-                    <label for="typeTransportation">Car</label><br>
+                            <label for="code">Type Transportation</label> <br>
+                            <input type="radio" name="typeTransportation" value="motorcycle" required>
+                            <label for="typeTransportation">Motorcycle</label><br>
+                            <input type="radio" name="typeTransportation"value="car">
+                            <label for="typeTransportation">Car</label><br>
 
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+
+                    <% 
+                    if (invalidCode != null && !invalidCode.isEmpty()){
+                        session.removeAttribute("InvalidCode");
+                    %>
+
+                    <p style="color: red;"> <%= invalidCode %> </p>
+
+                    <%
+                    }
+                    %>
             <%
                 }
             }
