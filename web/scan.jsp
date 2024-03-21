@@ -18,13 +18,10 @@
             <input type="text" name="licensePlate" required>
             <br>
             
-            <input type="radio" name="typeMotorecycle" value="motorcycle" required>
-            <label for="typeMotorecycle">Motorcycle</label><br>
-            <input type="radio" name="typeMotorecycle"value="motor">
-            <label for="typeMotorecycle">Motor</label><br>
-            <input type="radio" name="typeMotorecycle" value="other">
-            <label for="typeMotorecycle">Other</label>
-            <br>
+            <input type="radio" name="typeTransportation" value="motorcycle" required>
+            <label for="typeTransportation">Motorcycle</label><br>
+            <input type="radio" name="typeTransportation"value="car">
+            <label for="typeTransportation">Car</label><br>
             
             <button type="submit">Submit</button>
         </form>

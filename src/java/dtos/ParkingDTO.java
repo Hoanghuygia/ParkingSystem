@@ -21,6 +21,14 @@ public class ParkingDTO {
         this.username = username;
         this.code = code;
     }
+    public ParkingDTO(String username, String code, String spot, String startTime, String typeTransportation){
+        this.username = username;
+        this.code = code;
+        this.spot = spot;
+        this.startTime = startTime;
+        this.typeTransportation = typeTransportation;
+    }
+        
 
     public String getUsername() {
         return username;
@@ -47,7 +55,7 @@ public class ParkingDTO {
     }
 
     public String getStartTime() {
-        return startTime;
+        return startTime; 
     }
 
     public void setStartTime(String startTime) {

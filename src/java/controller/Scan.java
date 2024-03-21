@@ -35,7 +35,7 @@ public class Scan extends HttpServlet {
         ContractorDAO contractorDAO = new ContractorDAO();
         
         String code = req.getParameter("licensePlate");
-        String type = req.getParameter("typeMotorecycle");
+        String type = req.getParameter("typeTransportation");
         
         ParkingDTO parkingSlot = new ParkingDTO(user.getUsername(), code);
         parkingSlot.setTypeTransportation(type);

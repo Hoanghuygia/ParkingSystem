@@ -10,8 +10,15 @@ package dtos;
  */
 public class ContractorDTO {
     private String username;
+    private String typeTransportation;
     private String code;
     private String date;
+    
+    public ContractorDTO(String username, String code, String typeTransportation){
+        this.username = username;
+        this.code = code;
+        this.typeTransportation = typeTransportation;
+    }
 
     public String getUsername() {
         return username;
@@ -35,6 +42,13 @@ public class ContractorDTO {
 
     public void setDate(String date) {
         this.date = date;
+    }
+    public String getTypeTransportation() {
+        return typeTransportation;
+    }
+
+    public void setTypeTransportation(String typeTransportation) {
+        this.typeTransportation = typeTransportation;
     }
 
 }

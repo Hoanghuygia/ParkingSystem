@@ -8,6 +8,7 @@ import daos.ParkingDAO;
 import dtos.ParkingDTO;
 import dtos.UserInforDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,29 +20,33 @@ import java.util.ArrayList;
  *
  * @author LAPTOP
  */
-public class Recommend extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("recommend.jsp").forward(req, resp);
-    }
+public class TakeTransportation extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //in this method, we need to visualize like the recommend as well as save information to the database
         HttpSession session = req.getSession(true);
-
-        ParkingDTO parkingSlot = (ParkingDTO) session.getAttribute("ParkingSlot");
-        String spot = (String) session.getAttribute("ParkingSpot");
-        parkingSlot.setSpot(spot);
-
+        UserInforDTO user = (UserInforDTO)session.getAttribute("User");
+        String code = req.getParameter("departButton");
+        
         ParkingDAO parkingDAO = new ParkingDAO();
-        parkingDAO.saveParkingSpotToDatabase(parkingSlot);
+        parkingDAO.insertEndTime(code);
+        parkingDAO.calculateTotalTime(code);
+        parkingDAO.removeSpotOutOfDatabase(code);
+        
+        if (user != null) {
 
-        session.setAttribute("ParikingSuccess", "Parking Successfully");
+            ArrayList<ParkingDTO> parking = parkingDAO.getAllSpotFromParking(user.getUsername());
+            
+            if (parking != null) {
+                req.setAttribute("Parking", parking);
+            }
+        }
 
-        resp.sendRedirect("recommend");
-
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
+        
+        
+        
+        
     }
 
 }
