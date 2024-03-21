@@ -32,14 +32,6 @@
         <form action="scan" method="get">
             <button>Scan</button>
         </form>
-        <% 
-        if(request.getAttribute("Parking") != null){
-                out.println("huyd dep trai");
-        }
-        else{
-            out.println("aloaloalo");
-        }
-        %>
 
         <div>
             <p>Current parked transportation</p>

@@ -22,6 +22,52 @@ public class ParkingDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public void removeSpotOutOfDatabase(String code){
+        String query = "DELETE FROM Parking WHERE code= ? ";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+            
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public void calculateTotalTime(String code){
+        String query = "UPDATE Parking SET "
+                + "interval_time = TIMESTAMPDIFF(SECOND, start_time, end_time)"
+                + "WHERE code= ?";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public void insertEndTime(String code){
+        String query = "UPDATE Parking SET end_time = NOW() WHERE code= ?";
+        
+        try{
+            conn = DBConnector.getConnection();
+            
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        
+    }
     public ArrayList<ParkingDTO> getAllSpotFromParking(String username){
         
         ArrayList<ParkingDTO> parkings = new ArrayList<>();
