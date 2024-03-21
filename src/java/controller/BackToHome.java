@@ -4,13 +4,16 @@
  */
 package controller;
 
+import daos.ParkingDAO;
+import dtos.ParkingDTO;
+import dtos.UserInforDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +23,19 @@ public class BackToHome extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("home");
+        HttpSession session = req.getSession(true);
+        
+        UserInforDTO user = (UserInforDTO)session.getAttribute("User");
+        ParkingDAO parkingDAO = new ParkingDAO();
+        
+        ArrayList<ParkingDTO> parking = parkingDAO.getAllSpotFromParking(user.getUsername());
+
+        if (parking != null) {
+
+            req.setAttribute("Parking", parking);
+        }
+//        resp.sendRedirect("home");
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 
 }

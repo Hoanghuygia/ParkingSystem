@@ -6,12 +6,14 @@ package controller;
 
 import daos.ParkingDAO;
 import dtos.ParkingDTO;
+import dtos.UserInforDTO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,19 +30,18 @@ public class Recommend extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //in this method, we need to visualize like the recommend as well as save information to the database
         HttpSession session = req.getSession(true);
-        
-        ParkingDTO parkingSlot = (ParkingDTO)session.getAttribute("ParkingSlot");
-        String spot = (String)session.getAttribute("ParkingSpot");
+
+        ParkingDTO parkingSlot = (ParkingDTO) session.getAttribute("ParkingSlot");
+        String spot = (String) session.getAttribute("ParkingSpot");
         parkingSlot.setSpot(spot);
-        
+
         ParkingDAO parkingDAO = new ParkingDAO();
         parkingDAO.saveParkingSpotToDatabase(parkingSlot);
-        
+
         session.setAttribute("ParikingSuccess", "Parking Successfully");
-        
+
         resp.sendRedirect("recommend");
-        
+
     }
-    
-    
+
 }
