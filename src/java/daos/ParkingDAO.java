@@ -18,10 +18,56 @@ import utils.DBConnector;
  * @author LAPTOP
  */
 public class ParkingDAO {
+
     private Connection conn = null;
     private PreparedStatement stm = null;
     private ResultSet rs = null;
-    
+
+    public void calculateCost(String code, String type) {
+        String query;
+        if (type.equals("motorcycle")) {
+            System.out.println("Remove motorcycle");
+            query = """
+                    UPDATE Parking
+                    SET cost = 
+                      CASE
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 1
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 1
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 4
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 2
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 10
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 6
+                        ELSE -1
+                      END
+                    WHERE code = ?;""";
+        } else {
+            System.out.println("Remove car");
+            query = """
+                    UPDATE Parking
+                    SET cost = 
+                      CASE
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 1
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 1
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 4
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 2
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 10
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 6
+                        ELSE -1
+                      END
+                    WHERE code = ?;""";
+        }
+        try {
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+
+    }
     public void removeSpotOutOfDatabase(String code){
         String query = "DELETE FROM Parking WHERE code= ? ";
         

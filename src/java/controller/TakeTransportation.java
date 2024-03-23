@@ -8,7 +8,6 @@ import daos.ParkingDAO;
 import dtos.ParkingDTO;
 import dtos.UserInforDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,12 +25,15 @@ public class TakeTransportation extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         UserInforDTO user = (UserInforDTO)session.getAttribute("User");
-        String code = req.getParameter("departButton");
+        String code = req.getParameter("code");
+        String typeTransporation = req.getParameter("typeTransporation");
+        System.out.println("Kind: " + typeTransporation);
         
         ParkingDAO parkingDAO = new ParkingDAO();
         parkingDAO.insertEndTime(code);
         parkingDAO.calculateTotalTime(code);
-        parkingDAO.removeSpotOutOfDatabase(code);
+//        parkingDAO.removeSpotOutOfDatabase(code);
+        parkingDAO.calculateCost(code, typeTransporation );
         
         if (user != null) {
 

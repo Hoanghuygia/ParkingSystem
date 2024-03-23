@@ -34,7 +34,6 @@ public class BackToHome extends HttpServlet {
 
             req.setAttribute("Parking", parking);
         }
-//        resp.sendRedirect("home");
         req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 

@@ -54,11 +54,16 @@
 
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">
                             <form action="TakeTransportation" method="post">
-                                <button type="submit" name="departButton" value="${parking.code}">Depart</button>
+                                <input type="hidden" name="code" value="${parking.getCode()}">
+                                <input type="hidden" name="typeTransporation" value="${parking.getTypeTransportation()}">
+                                <!--<button type="submit" name="departButton" value="">Depart</button> using button to submit value-->
+                                <button type="submit">Depart</button>
                             </form>
                         </td>
                     </tr>
                 </c:forEach>
             </table> 
+            
+        </div>    
     </body>
 </html>
