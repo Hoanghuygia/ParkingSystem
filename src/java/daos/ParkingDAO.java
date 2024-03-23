@@ -23,6 +23,24 @@ public class ParkingDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
 
+    public String getCostByCode(String code){
+        String query = "SELECT * FROM Parking WHERE code= ?";
+        String cost = null;
+        try{
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            rs = stm.executeQuery();
+            while(rs.next()){
+                cost = rs.getString("cost");
+                System.out.println("cost: " + cost);
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return cost;
+    }
     public void calculateCost(String code, String type) {
         String query;
         if (type.equals("motorcycle")) {
@@ -31,12 +49,12 @@ public class ParkingDAO {
                     UPDATE Parking
                     SET cost = 
                       CASE
-                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 1
-                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 1
-                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 4
-                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 2
-                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 10
-                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 6
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 5000
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 10000
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 20000
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 0
                         ELSE -1
                       END
                     WHERE code = ?;""";
@@ -46,12 +64,12 @@ public class ParkingDAO {
                     UPDATE Parking
                     SET cost = 
                       CASE
-                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 1
-                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 1
-                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 4
-                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 2
-                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 10
-                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 6
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 10000
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 20000
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 30000
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 0
                         ELSE -1
                       END
                     WHERE code = ?;""";

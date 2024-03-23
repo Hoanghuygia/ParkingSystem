@@ -35,6 +35,10 @@ public class TakeTransportation extends HttpServlet {
 //        parkingDAO.removeSpotOutOfDatabase(code);
         parkingDAO.calculateCost(code, typeTransporation );
         
+        String cost = parkingDAO.getCostByCode(code); //if we only need code to find, so username is not invalid primary key?
+        System.out.println("cost in taketransportation: " + cost);
+        session.setAttribute("DepartCost", cost);
+        
         if (user != null) {
 
             ArrayList<ParkingDTO> parking = parkingDAO.getAllSpotFromParking(user.getUsername());

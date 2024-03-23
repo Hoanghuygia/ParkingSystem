@@ -62,8 +62,19 @@
                         </td>
                     </tr>
                 </c:forEach>
-            </table> 
-            
-        </div>    
+            </table>  
+        </div>   
+        <div>
+            <p>Toatl cost is: </p>
+            <% 
+            String cost = (String) session.getAttribute("DepartCost");
+            if (cost != null && !cost.isEmpty()){
+                session.removeAttribute("DepartCost");
+            %>
+            <p style="color: red;"> <%= cost %> </p>
+            <%
+                }
+            %>
+        </div>
     </body>
 </html>
