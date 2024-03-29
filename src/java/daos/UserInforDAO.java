@@ -20,6 +20,9 @@ public class UserInforDAO {
     private PreparedStatement stm = null;
     private ResultSet rs = null;
     
+    public void updateCoin(String username, int coin){
+        
+    }
 //    public void changeUserInformation(String parameterValue, String username, String fieldName){
 //        String query = "UPDATE Users SET ? = ? WHERE username= ?";
 //        

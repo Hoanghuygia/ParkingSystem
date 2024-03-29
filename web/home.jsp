@@ -65,7 +65,7 @@
             </table>  
         </div>   
         <div>
-            <p>Toatl cost is: </p>
+            <p>Total cost is: </p>
             <% 
             String cost = (String) session.getAttribute("DepartCost");
             if (cost != null && !cost.isEmpty()){
@@ -75,6 +75,9 @@
             <%
                 }
             %>
+            <form action="PayparkingCost">
+                <button>Pay</button>
+            </form>
         </div>
     </body>
 </html>

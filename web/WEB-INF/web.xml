@@ -71,6 +71,10 @@
         <servlet-name>TakeTransportation</servlet-name>
         <servlet-class>controller.TakeTransportation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PayParkingCost</servlet-name>
+        <servlet-class>controller.PayParkingCost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main</url-pattern>
@@ -138,5 +142,9 @@
     <servlet-mapping>
         <servlet-name>TakeTransportation</servlet-name>
         <url-pattern>/TakeTransportation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayParkingCost</servlet-name>
+        <url-pattern>/PayParkingCost</url-pattern>
     </servlet-mapping>
 </web-app>

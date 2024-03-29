@@ -1,0 +1,143 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 28, 2024, 9:32:23 PM
+    Author     : LAPTOP
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --bg-color: #fdfdfd;
+    --text-color: #333;
+    --main-color: #754ef9;
+    --main-color2: rgb(252, 1, 255);
+    --white-color: #fdfdfd;
+    --shadow-color: rgba(0 ,0, 0, .3);
+    --shadow-color2: rgba(117 ,78, 249, .3);
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden; /* ngăn thanh bar ở dưới xuất hiện khi width dài quá */
+}
+
+body{
+    /*background: url("../../assests/img/slider/slider1.jpg") top center / cover no-repeat;*/
+    background: url("../image/bg-01.jpg") top center / cover no-repeat;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    height: 100vh;
+}
+
+.login-container{
+    background: var(--white-color);
+    min-width: 40rem;
+    min-height: 90vh;
+    box-shadow: 0 .1rem 2rem var(--shadow-color);
+    border-radius: .5rem;
+}
+
+.login-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*text-align: left;*/
+}
+
+.login-container h2{
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+.login-container form{
+    min-width: 75%;
+    margin: 1rem 0;
+}
+form label{
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    display: block;
+    text-align: left;
+}
+
+form .input-box{
+    font-size: 1.8rem;
+    box-shadow: 0 .1rem .8rem var(--shadow-color2);
+    position: relative;
+    width: 100%;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    border-radius: .3rem;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    color: red;
+}
+
+form input,
+form .icon-form{
+    margin-left: 1rem;
+}
+
+form input{
+    padding-right: auto;
+}
+
+form p{
+    float: right;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+form .btn{
+    width: 100%;
+    background: linear-gradient(to right, rgba(8, 210, 222, 1), rgb(251, 1, 255));
+    height: 3rem;
+    border-radius: 2rem;
+    color: var(--white-color);
+    font-weight: 600;
+    /*margin-bottom: 3rem;*/
+}
+
+.login-box p{
+    opacity: 0.5;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.login-box .icon-box{
+    display: flex;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 5.5rem;
+}
+
+/*form input::before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 0.2rem;  điều chỉnh giá trị chiều cao 
+    background: red;
+}*/
+
