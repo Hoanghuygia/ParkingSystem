@@ -54,11 +54,30 @@
 
                         <td style="border: 1px solid #dddddd; padding: 8px; text-align: left;">
                             <form action="TakeTransportation" method="post">
-                                <button type="submit" name="departButton" value="${parking.code}">Depart</button>
+                                <input type="hidden" name="code" value="${parking.getCode()}">
+                                <input type="hidden" name="typeTransporation" value="${parking.getTypeTransportation()}">
+                                <!--<button type="submit" name="departButton" value="">Depart</button> using button to submit value-->
+                                <button type="submit">Depart</button>
                             </form>
                         </td>
                     </tr>
                 </c:forEach>
-            </table> 
+            </table>  
+        </div>   
+        <div>
+            <p>Total cost is: </p>
+            <% 
+            String cost = (String) session.getAttribute("DepartCost");
+            if (cost != null && !cost.isEmpty()){
+                session.removeAttribute("DepartCost");
+            %>
+            <p style="color: red;"> <%= cost %> </p>
+            <%
+                }
+            %>
+            <form action="PayparkingCost">
+                <button>Pay</button>
+            </form>
+        </div>
     </body>
 </html>

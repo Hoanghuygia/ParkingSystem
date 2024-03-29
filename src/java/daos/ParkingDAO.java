@@ -18,10 +18,74 @@ import utils.DBConnector;
  * @author LAPTOP
  */
 public class ParkingDAO {
+
     private Connection conn = null;
     private PreparedStatement stm = null;
     private ResultSet rs = null;
-    
+
+    public String getCostByCode(String code){
+        String query = "SELECT * FROM Parking WHERE code= ?";
+        String cost = null;
+        try{
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            rs = stm.executeQuery();
+            while(rs.next()){
+                cost = rs.getString("cost");
+                System.out.println("cost: " + cost);
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return cost;
+    }
+    public void calculateCost(String code, String type) {
+        String query;
+        if (type.equals("motorcycle")) {
+            System.out.println("Remove motorcycle");
+            query = """
+                    UPDATE Parking
+                    SET cost = 
+                      CASE
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 5000
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 10000
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 20000
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 0
+                        ELSE -1
+                      END
+                    WHERE code = ?;""";
+        } else {
+            System.out.println("Remove car");
+            query = """
+                    UPDATE Parking
+                    SET cost = 
+                      CASE
+                        WHEN interval_time < 43200 AND spot LIKE 'G%' THEN 10000
+                        WHEN interval_time < 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 43200 AND spot LIKE 'G%' THEN 20000
+                        WHEN interval_time >= 43200 AND spot LIKE 'R%' THEN 0
+                        WHEN interval_time >= 259200 AND spot LIKE 'G%' THEN 30000
+                        WHEN interval_time >= 259200 AND spot LIKE 'R%' THEN 0
+                        ELSE -1
+                      END
+                    WHERE code = ?;""";
+        }
+        try {
+            conn = DBConnector.getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, code);
+            
+            stm.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+
+    }
     public void removeSpotOutOfDatabase(String code){
         String query = "DELETE FROM Parking WHERE code= ? ";
         
