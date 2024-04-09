@@ -1,0 +1,39 @@
+# ## YAML Template.
+# ---
+# services:
+#   mysql:
+#     image: mysql:8.0
+#     restart: always
+# #    volumes:
+# #      - todo-mysql-data:/var/lib/mysql
+#     environment:
+#       MYSQL_ROOT_PASSWORD: huy1234
+#       MYSQL_DATABASE: ParkingSystem
+#     port:
+#       - '3307:3306'
+# #volumes:
+# #  todo-mysql-data:
+
+#   # volume binded: dữ liệu được link với bên ngoài
+#   # volumned mondted: dữ liệu lưu theo image
+# Use root/example as user/password credentials
+
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=ParkingSystem
+      - MYSQL_ROOT_PASSWORD=huy1234
+    ports:
+      - '3307:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - C:\Users\LAPTOP\Documents\Code\JavaNetBean\ParkingSystem\mysql\table_init.sql:/docker-entrypoint-initdb.d/table_init.sql
+volumes:
+  db:
+    driver: local
+
